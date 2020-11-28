@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="rehabilitationprojectserver.FXML2Controller">
+    <stylesheets>
+        <URL value="@fxml2.css" />
+    </stylesheets>
+   <children>
+      <TextField layoutX="300.0" layoutY="197.0" />
+      <TextField layoutX="300.0" layoutY="251.0" />
+      <Label layoutX="134.0" layoutY="201.0" text="Bending angle" />
+      <Label layoutX="135.0" layoutY="255.0" text="Turning angle" />
+      <Label layoutX="149.0" layoutY="95.0" text="Strength" />
+      <LineChart layoutX="242.0" layoutY="25.0" prefHeight="158.0" prefWidth="264.0">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </LineChart>
+      <Button layoutX="242.0" layoutY="316.0" mnemonicParsing="false" text="Update" />
+   </children>
+</AnchorPane>

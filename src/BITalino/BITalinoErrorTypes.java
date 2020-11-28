@@ -15,7 +15,7 @@ public enum BITalinoErrorTypes {
 	MACADDRESS_NOT_VALID (11, "MAC address not valid."),
 	UNDEFINED (12,"UNDEFINED ERROR");
 
-
+        
 	private final int value;
 	private final String name;
 	BITalinoErrorTypes (int value, String name)
