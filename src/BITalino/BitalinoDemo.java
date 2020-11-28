@@ -1,6 +1,10 @@
 package BITalino;
 
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 import java.util.Vector;
 
 import javax.bluetooth.RemoteDevice;
@@ -16,6 +20,7 @@ public class BitalinoDemo {
     public static void main(String[] args) {
 
         BITalino bitalino = null;
+        List<Integer> coso = new ArrayList<Integer>();
         try {
             bitalino = new BITalino();
             // Code to find Devices
@@ -47,18 +52,24 @@ public class BitalinoDemo {
 
                 //Print the samples
                 for (int i = 0; i < frame.length; i++) {
-                    System.out.println((j * block_size + i) + " seq: " + frame[i].seq + " "
-                            + frame[i].analog[0] + " "
-                            + frame[i].analog[1] + " "
+                    //System.out.println((j * block_size + i) + " seq: " + frame[i].seq + " "
+                            //+ frame[i].analog[0] + " "
+                            //+ frame[i].analog[1] + " "
                     //  + frame[i].analog[2] + " "
                     //  + frame[i].analog[3] + " "
                     //  + frame[i].analog[4] + " "
                     //  + frame[i].analog[5]
-                    );
-
+                   // );
+                coso.add(frame[i].analog[0]); //we are adding the EMG to the arrayList
                 }
             }
             //stop acquisition
+           //we create an iterator to print the EMG values each second 
+            Iterator it= coso.iterator();
+            while (it.hasNext()){
+            System.out.println(it.next());
+            }
+            
             bitalino.stop();
         } catch (BITalinoException ex) {
             Logger.getLogger(BitalinoDemo.class.getName()).log(Level.SEVERE, null, ex);
