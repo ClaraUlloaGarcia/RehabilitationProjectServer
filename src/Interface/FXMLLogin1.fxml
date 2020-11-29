@@ -13,7 +13,7 @@
       <TextField layoutX="126.0" layoutY="45.0" />
       <TextField layoutX="126.0" layoutY="87.0" />
       <Button layoutX="134.0" layoutY="137.0" mnemonicParsing="false" text="Accept" />
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" />
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" />
+      <AnchorPane prefHeight="200.0" prefWidth="3.0" />
+      <Button layoutX="200.0" layoutY="137.0" mnemonicParsing="false" text="New Patient" />
     </children>
 </AnchorPane>
