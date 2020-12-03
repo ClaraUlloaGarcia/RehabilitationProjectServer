@@ -26,6 +26,10 @@ public class FXMLLogin1Controller implements Initializable {
         System.out.println("You clicked me!");
         label.setText("Hello World!");
     }
+   // @FXML
+    /*private void ok(ActionEvent event) {
+        System.out.println("funciono");
+    }*/
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
