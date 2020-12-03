@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Interface;
+package rehabilitationprojectserver;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -16,7 +16,7 @@ import javafx.scene.control.Label;
  *
  * @author ClaraU
  */
-public class FXMLLogin1Controller implements Initializable {
+public class FXMLDocumentController implements Initializable {
     
     @FXML
     private Label label;
@@ -26,10 +26,6 @@ public class FXMLLogin1Controller implements Initializable {
         System.out.println("You clicked me!");
         label.setText("Hello World!");
     }
-   // @FXML
-    /*private void ok(ActionEvent event) {
-        System.out.println("funciono");
-    }*/
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
