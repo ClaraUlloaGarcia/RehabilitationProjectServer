@@ -25,10 +25,12 @@ public static void main(String[] args){
     fm.SaveFixedVariables(0, "Mery", 21, false, 55.4, 1.67);
     fm.SaveFixedVariables(1, "Manola", 27, false, 75.4, 1.8);
     //Fichero 3 almacena las variabless que cambian cada semana
-    BITalinoManager b = new BITalinoManager();
-    fm.SaveChangingVariables(27, 50, b.connectReadBitalino("98:D3:31:FD:3B:92"));
+    //BITalinoManager b = new BITalinoManager();
+    //fm.SaveChangingVariables(27, 50, b.connectReadBitalino("98:D3:31:FD:3B:92"));
     
     //CARGAR
-    
+    fm.getUserPassword();
+    fm.getFixedVariables();
+    fm.getChangingVariables();
 }
 }

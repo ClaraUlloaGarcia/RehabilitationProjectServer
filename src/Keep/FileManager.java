@@ -89,7 +89,7 @@ public class FileManager {
     }
 
     public void SaveChangingVariables(int flex_ang, int turn_ang, ArrayList<Integer> bitalino) {
-        String saveChangingVar = "C:\\Users\\ClaraU\\Documents" + "\\saveFixed.txt";
+        String saveChangingVar = "C:\\Users\\ClaraU\\Documents" + "\\saveChanging.txt";
         System.out.println(saveChangingVar);
         dir = new File(saveChangingVar);
         if (!dir.exists()) {
@@ -114,23 +114,26 @@ public class FileManager {
 
     }
 
-    
     //CARGAAR
     public List[] getUserPassword() {
         try {
             String user = "C:\\Users\\ClaraU\\Documents" + "\\saveUser.txt";
+            //Read from the user and password file
             bf = new BufferedReader(new InputStreamReader(new FileInputStream(user)));
             List<String> userNames = new ArrayList<String>();
             List<String> passwords = new ArrayList<String>();
-            java.lang.String read; //??????
+            java.lang.String read; //Class represents character constant strings. Values cannot be changed after create them.
             int counter = 0;
+            //While I have info, I continue reading 
             while ((read = bf.readLine()) != null) {
                 if (read.equals("")) {
                     continue;
                 }
+                //As we start with position 0, even numbers are the user names
                 if (counter % 2 == 0) {
                     userNames.add((String) read);
                 } else {
+                    //Odd numbers are the passwords
                     passwords.add((String) read);
                 }
                 counter++;
@@ -138,7 +141,69 @@ public class FileManager {
             return new List[]{userNames, passwords};
         } catch (Exception e) {
             System.out.println("Could not read users or passwords!");
-            e.printStackTrace();
+            e.printStackTrace(); //Helps to trace the exception
+            return null;
+        }
+    }
+
+    public List[] getFixedVariables() {
+        try {
+            String saveFixedVar = "C:\\Users\\ClaraU\\Documents" + "\\saveFixed.txt";
+            //Read from the user and password file
+            bf = new BufferedReader(new InputStreamReader(new FileInputStream(saveFixedVar)));
+            List<String> userID = new ArrayList<String>();
+            List<String> userNames = new ArrayList<String>();
+            List<String> passwords = new ArrayList<String>();
+            List<String> age = new ArrayList<String>();
+            List<String> gender = new ArrayList<String>();
+            List<String> weight = new ArrayList<String>();
+            List<String> height = new ArrayList<String>();
+            java.lang.String read; //Class represents character constant strings. Values cannot be changed after create them.
+            
+            //While I have info, I continue reading 
+            while ((read = bf.readLine()) != null) {
+                if (read.equals("")) {
+                    continue;
+                }
+                userID.add(read);
+                userNames.add(read);
+                passwords.add(read);
+                age.add(read);
+                gender.add(read);
+                weight.add(read);
+                height.add(read);
+            }
+            return new List[]{userID, userNames, passwords, age, gender, weight, height};
+        } catch (Exception e) {
+            System.out.println("Could not read the profiles of the users!");
+            e.printStackTrace(); //Helps to trace the exception
+            return null;
+        }
+    }
+    
+    public List[] getChangingVariables() {
+        try {
+            String saveChangingVar = "C:\\Users\\ClaraU\\Documents" + "\\saveFixed.txt";
+            //Read from the user and password file
+            bf = new BufferedReader(new InputStreamReader(new FileInputStream(saveChangingVar)));
+            List<String> flex_ang = new ArrayList<String>();
+            List<String> turn_ang = new ArrayList<String>();
+            List<String> bitalino = new ArrayList<String>();
+            java.lang.String read; //Class represents character constant strings. Values cannot be changed after create them.
+            int counter = 0;
+            //While I have info, I continue reading 
+            while ((read = bf.readLine()) != null) {
+                if (read.equals("")) {
+                    continue;
+                }
+                flex_ang.add(read);
+                turn_ang.add(read);
+                bitalino.add(read);
+            }
+            return new List[]{flex_ang, turn_ang, bitalino};
+        } catch (Exception e) {
+            System.out.println("Could not read the profiles of the users!");
+            e.printStackTrace(); //Helps to trace the exception
             return null;
         }
     }
