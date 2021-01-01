@@ -3,14 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package rehabilitationprojectserver;
+package server;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 
 /**
  *
@@ -22,14 +25,29 @@ public class FXMLDocumentController implements Initializable {
     private Label label;
     
     @FXML
+    private PasswordField passwords;
+    
+    
+    private Server server = new Server();
+    
+    @FXML
     private void handleButtonAction(ActionEvent event) {
-        System.out.println("You clicked me!");
-        label.setText("Hello World!");
+        final String PASSWORD = "1234";
+        if(passwords.getText().equals(PASSWORD)) {
+            server.shutdownServer();
+            System.exit(0);
+        } else {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setContentText("Wrong Password."); 
+            alert.show(); 
+        }
     }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
+        server.start();
+      
     }    
     
 }
