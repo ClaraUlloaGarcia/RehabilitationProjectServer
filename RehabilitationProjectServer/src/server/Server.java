@@ -6,10 +6,6 @@ import java.net.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author ifndz
- */
 public class Server {
     
     public ServerSocket serverSocket;
@@ -17,7 +13,6 @@ public class Server {
     private Boolean shutdown = false;
     private Thread thread;
 
- 
     public void start() { 
  
         thread = new Thread(new Runnable() {
@@ -25,16 +20,12 @@ public class Server {
             public void run() {
 
                 try {
-                    //nombre y contraseña
-
                     serverSocket = new ServerSocket(9000);
-
                     while (!shutdown) {
                         Socket socket = serverSocket.accept();
                         //We use Threads (hilos) to snd the client to serverProcess. The server is free to listen to another client in the same port.
                         serverProcess = new ServerProcess(socket);
                         serverProcess.start();
-                      
                     }
                 } catch (IOException ex) { }
                 finally {
@@ -57,7 +48,6 @@ public class Server {
         } catch (InterruptedException ex) {
             Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
     }
     
     private void releaseResourcesServer() {

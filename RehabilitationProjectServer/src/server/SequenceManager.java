@@ -3,10 +3,6 @@ package server;
 
 import java.util.Arrays;
 
-/**
- *
- * @author ClaraU
- */
 public class SequenceManager {
     
     private char EXPECTED_SEQUENCE[] = new char[] {31, 18, 30};

@@ -1,12 +1,7 @@
-
 package server;
 
 import java.util.List;
 
-/**
- *
- * @author ClaraU
- */
 public class Validator {
     
     //Validate 

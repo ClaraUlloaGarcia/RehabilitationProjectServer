@@ -4,7 +4,6 @@ package server;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -18,10 +17,6 @@ import java.util.concurrent.locks.ReentrantLock;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author ClaraU
- */
 public class FileManager {
 
     File dir;
@@ -37,7 +32,7 @@ public class FileManager {
         BASE_DIRECTORY = System.getProperty("user.dir");// //Folder used for all the files   
     }
 
-    //GUARDAAAR 
+    //GUARDAR 
     public boolean saveUserPassword(String user, String password) {
         
         String saveUser = BASE_DIRECTORY + File.separator + USER_FILE;
@@ -140,7 +135,7 @@ public class FileManager {
         return true;
     }
 
-    //CARGAAR
+    //CARGAR
     public List[] getUserPassword() {
         try {
             lock.lock();
@@ -181,5 +176,4 @@ public class FileManager {
         String formattedDate = formatter.format(date);
         return formattedDate;
     }
-    
 }

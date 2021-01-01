@@ -10,10 +10,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author ClaraU
- */
 public class ServerProcess extends Thread {
 
     private final Socket socket;
@@ -258,14 +254,13 @@ public class ServerProcess extends Thread {
             try {
                 int newData = Integer.parseInt(data);
                 bitalino.add(newData);
-            } catch (NumberFormatException ex) {
+            }catch (NumberFormatException ex) {
                 sendError();
                 return;
             }
         }
-
-                    double validateFlex;
-            double validateTurn;
+        double validateFlex;
+        double validateTurn;
         try {
             validateFlex = Double.parseDouble(flex_ang);
             validateTurn = Double.parseDouble(turn_ang);
@@ -285,9 +280,8 @@ public class ServerProcess extends Thread {
                 printWriter.append(workout + "\n");
             }
             printWriter.flush();
-           
-                        sendOk();
-        } else {
+            sendOk();
+        }else {
             sendError();
         }
     }
