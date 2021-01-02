@@ -14,11 +14,9 @@ public class Server {
     private Thread thread;
 
     public void start() { 
- 
         thread = new Thread(new Runnable() {
             @Override
             public void run() {
-
                 try {
                     serverSocket = new ServerSocket(9000);
                     while (!shutdown) {
@@ -40,7 +38,7 @@ public class Server {
         try {
             shutdown = true;
             if(!serverSocket.isClosed()){
-                    serverSocket.close();
+                serverSocket.close();
             }
             thread.join();
         } catch (IOException ex) {

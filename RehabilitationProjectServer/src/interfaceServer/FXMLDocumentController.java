@@ -25,11 +25,12 @@ public class FXMLDocumentController implements Initializable {
     
     @FXML
     private void handleButtonAction(ActionEvent event) {
-        final String PASSWORD = "1234";
+        final String PASSWORD = "1234"; //Fixed password to shut down the server
         if(passwords.getText().equals(PASSWORD)) {
             server.shutdownServer();
             System.exit(0);
         } else {
+            //Incorrect password
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setContentText("Wrong Password."); 
             alert.show(); 
@@ -38,8 +39,6 @@ public class FXMLDocumentController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
         server.start();
-      
     }    
 }

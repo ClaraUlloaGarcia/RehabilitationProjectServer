@@ -24,20 +24,19 @@ public class Validator {
         return "male".equals(gender) || "female".equals(gender);
     }
     
-    //Method to verify that the user does not exist when we have a registration
+    //Method to verify that the user does not exist in the users file when we have a registration
     public static boolean validateNewUser(String user) {
-        //1. Verify correct pattern, well written
+        //1. Verify correct pattern, without symbols or blank spaces
         if(!Validator.validateSingleWord(user)) {
             return false;
         }
         //2. Is there an existing user with the same name? 
         FileManager fileManager = new FileManager();
-        List[] credentials = fileManager.getUserPassword();
-        if(credentials == null) {
+        List[] credentials = fileManager.getUserPassword(); //carga fichero con usuarios ya existentes
+        if(credentials == null) { 
             return true;
         }
-        
-        if(credentials.length == 0) {
+        if(credentials.length == 0) { //No hay ningún paciente registrado?
             return true;
         }
         //In credentials[0] we have a list with all userNames from the file with all names and passwords

@@ -81,7 +81,6 @@ public class ServerProcess extends Thread {
     private void releaseResources() {
         try {
             inputStream.close();
-
         } catch (IOException ex) {
             Logger.getLogger(ServerProcess.class
                     .getName()).log(Level.SEVERE, null, ex);
@@ -89,7 +88,6 @@ public class ServerProcess extends Thread {
 
         try {
             socket.close();
-
         } catch (IOException ex) {
             Logger.getLogger(ServerProcess.class
                     .getName()).log(Level.SEVERE, null, ex);
@@ -106,7 +104,7 @@ public class ServerProcess extends Thread {
 
     private void sendOk() {
         try {
-            outputStream.write(CODE_OK); //Ha ido bien
+            outputStream.write(CODE_OK); //All went well
         } catch (IOException ex) {
             Logger.getLogger(ServerProcess.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -133,7 +131,7 @@ public class ServerProcess extends Thread {
 
     private boolean login(String userName, String password) {
         FileManager fileManager = new FileManager();
-        List[] credentials = fileManager.getUserPassword();
+        List[] credentials = fileManager.getUserPassword(); //carga usuarios y contraseñas ya guardados en el fichero
         if (credentials == null) {
             return false;
         }
@@ -144,7 +142,7 @@ public class ServerProcess extends Thread {
         List<String> passwords = credentials[1];
 
         if (users.size() != passwords.size()) {
-            System.out.println("La cantidad de usuarios no coincide con las contraseñas");
+            System.out.println("Number of users does not match with number of passwords");
             return false;
         }
         for (int i = 0; i < users.size(); i++) {
@@ -163,7 +161,7 @@ public class ServerProcess extends Thread {
             sendError();
             return;
         }
-        System.out.println("Usuario leido");
+        System.out.println("User read");
 
         String password = readLine();
         //The password will differenciate lower than upper letters
@@ -171,14 +169,14 @@ public class ServerProcess extends Thread {
             sendError();
             return;
         }
-        System.out.println("password leido");
+        System.out.println("Password read");
 
         String gender = readLine();
         if (!Validator.validateGender(gender)) {
             sendError();
             return;
         }
-        System.out.println("gender leido");
+        System.out.println("Gender read");
 
         String ageLine = readLine();
         int age;
@@ -191,8 +189,8 @@ public class ServerProcess extends Thread {
             sendError();
             return;
         }
-
-        System.out.println("age leido");
+        System.out.println("Age read");
+        
         String weightLine = readLine();
         double weight;
         try {
@@ -201,8 +199,8 @@ public class ServerProcess extends Thread {
             sendError();
             return;
         }
-
-        System.out.println("weight leido");
+        System.out.println("Weight read");
+        
         String heightLine = readLine();
         double height;
         try {
@@ -211,8 +209,7 @@ public class ServerProcess extends Thread {
             sendError();
             return;
         }
-
-        System.out.println("height leido");
+        System.out.println("Height read");
 
         boolean register = register(userName, password, gender, age, weight, height);
         if (register) {
@@ -220,7 +217,7 @@ public class ServerProcess extends Thread {
             sendOk();
         } else {
             sendError();
-            System.out.println("Enviado error");
+            System.out.println("Error sent");
         }
     }
 
@@ -228,7 +225,7 @@ public class ServerProcess extends Thread {
         FileManager fileManager = new FileManager();
         // TODO Validacion
         return fileManager.saveFixedVariables(userName, gender, age,
-                weight, height) && fileManager.saveUserPassword(userName, password);
+                weight, height) && fileManager.saveUserPassword(userName, password); //Guarda el registro en el fichero
     }
 
     // Variable data methods
@@ -243,7 +240,7 @@ public class ServerProcess extends Thread {
         List<String> bitalinoData = new ArrayList(); //Lista de strings
         for (int i = 0; i < size; i++) {
             String line = readLine();
-            System.out.println("Dato recibido desde el amigo cliente " + line);
+            System.out.println("Data received from client " + line);
             bitalinoData.add(line);//lee linea y añade a la lista
         }
         String flex_ang = readLine();
@@ -259,6 +256,7 @@ public class ServerProcess extends Thread {
                 return;
             }
         }
+        
         double validateFlex;
         double validateTurn;
         try {
@@ -270,10 +268,11 @@ public class ServerProcess extends Thread {
         }
 
         FileManager fileManager = new FileManager();
-        boolean saved = fileManager.saveChangingVariables(user, validateFlex, validateTurn, bitalino);
+        boolean saved = fileManager.saveChangingVariables(user, validateFlex, validateTurn, bitalino); //Guarda en el fichero de cada pacinete, sus datos variables
         if (saved) {
+            //Exercises server sends to client
             WorkoutManager workoutManager = new WorkoutManager();
-            String workoutList [] = workoutManager.nextWorkout();
+            String workoutList [] = workoutManager.nextWorkout(); 
             PrintWriter printWriter = new PrintWriter(outputStream);
             printWriter.append(workoutList.length+ "\n");
             for (String workout : workoutList){

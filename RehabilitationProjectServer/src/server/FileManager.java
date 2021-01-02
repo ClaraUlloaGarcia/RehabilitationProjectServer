@@ -96,8 +96,8 @@ public class FileManager {
         return true;
     }
 
+    //It creates a file with the patient's name
     public boolean saveChangingVariables(String userName,double flex_ang, double turn_ang, List<Integer> bitalino) {
-        // TODO Crear directorio con nombre del paciente
         lock.lock();
         String saveChangingVar = BASE_DIRECTORY + File.separator + userName + ".txt";
         System.out.println(saveChangingVar);
@@ -114,7 +114,7 @@ public class FileManager {
         try {
             pw = new PrintWriter(new FileWriter(dir, true));
 
-            pw.append(todaysDate() + "\n");
+            pw.append(todaysDate() + "\n"); //FECHA, cada vez que introduce los datos variables
             pw.append(flex_ang + "\n");
             pw.append(turn_ang + "\n");
             pw.append(bitalino.size()+ "\n");
