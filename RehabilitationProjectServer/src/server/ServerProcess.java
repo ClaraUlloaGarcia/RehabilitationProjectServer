@@ -33,13 +33,12 @@ public class ServerProcess extends Thread {
             outputStream = socket.getOutputStream();
             while (true) {
                 int s;
-                s = inputStream.read();
-                if (sequenceManager.addChar((char) s)) {
+                s = inputStream.read(); //Lee un carácter
+                if (sequenceManager.addChar((char) s)) { //Si es true (trama recibida) dejamos de ignorar.
                     s = inputStream.read();
                     if (s == 'L') {
                         processLogin();
                     } else if (s == 'R') {
-                        System.out.println("Registro");
                         processRegister();
                     } else if (s == 'D') {
                         processData();
@@ -223,7 +222,9 @@ public class ServerProcess extends Thread {
 
     private boolean register(String userName, String password, String gender, int age, double weight, double height) {
         FileManager fileManager = new FileManager();
-        // TODO Validacion
+
+        
+        
         return fileManager.saveFixedVariables(userName, gender, age,
                 weight, height) && fileManager.saveUserPassword(userName, password); //Guarda el registro en el fichero
     }

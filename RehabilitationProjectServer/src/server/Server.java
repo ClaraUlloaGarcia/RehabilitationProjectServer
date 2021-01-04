@@ -18,7 +18,7 @@ public class Server {
             @Override
             public void run() {
                 try {
-                    serverSocket = new ServerSocket(9000);
+                    serverSocket = new ServerSocket(9000); //para escuchar, abrimos puerto sólo una vez
                     while (!shutdown) {
                         Socket socket = serverSocket.accept();
                         //We use Threads (hilos) to snd the client to serverProcess. The server is free to listen to another client in the same port.
@@ -31,7 +31,7 @@ public class Server {
                 }
             }
         });
-        thread.start();
+        thread.start(); //start de la clase thread
     }
     
     public void shutdownServer () {

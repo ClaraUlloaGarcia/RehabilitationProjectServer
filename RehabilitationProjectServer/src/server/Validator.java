@@ -6,7 +6,7 @@ public class Validator {
     
     //Validate 
     public static boolean validateSingleWord(String word) { 
-        if(word == null) {
+        if(word == null || word.length() == 0) {
             return false;
         }
         for(int i = 0; i < word.length(); i++) {
@@ -27,6 +27,10 @@ public class Validator {
     //Method to verify that the user does not exist in the users file when we have a registration
     public static boolean validateNewUser(String user) {
         //1. Verify correct pattern, without symbols or blank spaces
+        if(user == null || user.length() == 0){
+            return false;
+        }
+        
         if(!Validator.validateSingleWord(user)) {
             return false;
         }

@@ -29,7 +29,7 @@ public class WorkoutManager {
         List<Integer> positions = new ArrayList();
         while(positions.size() < TOTAL_WORKOUT){
             int position = random.nextInt(workoutList.length);
-            if(positions.indexOf(position) < 0){ //Check repetitions?
+            if(positions.indexOf(position) < 0){ //Check repetitions
                 positions.add(position);
             }
         }
