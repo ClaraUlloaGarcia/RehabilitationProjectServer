@@ -235,18 +235,18 @@ public class ServerProcess extends Thread {
             sendError();
             return;
         }
-        String sizeString = readLine();
+        String sizeString = readLine(); //Cuántos datos vienen del BItalino
         int size = Integer.parseInt(sizeString);
         System.out.println("Recibo una linea con " + size + " elementos");
         List<String> bitalinoData = new ArrayList(); //Lista de strings
         for (int i = 0; i < size; i++) {
-            String line = readLine();
+            String line = readLine(); //lee linea
             System.out.println("Data received from client " + line);
-            bitalinoData.add(line);//lee linea y añade a la lista
+            bitalinoData.add(line);//añade a la lista
         }
         String flex_ang = readLine();
         String turn_ang = readLine();
-
+                
         List<Integer> bitalino = new ArrayList();
         for (String data : bitalinoData) {
             try {

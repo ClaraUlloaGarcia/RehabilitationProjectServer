@@ -115,13 +115,14 @@ public class FileManager {
             pw = new PrintWriter(new FileWriter(dir, true));
 
             pw.append(todaysDate() + "\n"); //FECHA, cada vez que introduce los datos variables
-            pw.append(flex_ang + "\n");
-            pw.append(turn_ang + "\n");
+          
             pw.append(bitalino.size()+ "\n");
-            
             for(Integer data: bitalino) {
                 pw.append(data + "\n");
             }
+            
+            pw.append(flex_ang + "\n");
+            pw.append(turn_ang + "\n");
             
             pw.append("\n");
             pw.close();

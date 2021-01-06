@@ -16,7 +16,6 @@ public class Validator {
                 return false;
             }
         }
-        
         return true;
     }
     
@@ -30,19 +29,28 @@ public class Validator {
         if(user == null || user.length() == 0){
             return false;
         }
-        
         if(!Validator.validateSingleWord(user)) {
             return false;
         }
+        
+        // Para evitar sobreescribir los ficheros de users.txt y fixed.txt
+        if("users".equals(user)){
+            return false;
+        }
+        if("fixed".equals(user)){
+            return false;
+        }
+        
         //2. Is there an existing user with the same name? 
         FileManager fileManager = new FileManager();
         List[] credentials = fileManager.getUserPassword(); //carga fichero con usuarios ya existentes
         if(credentials == null) { 
             return true;
         }
-        if(credentials.length == 0) { //No hay ningún paciente registrado?
+        if(credentials.length == 0) { //No hay ningún paciente registrado
             return true;
         }
+        
         //In credentials[0] we have a list with all userNames from the file with all names and passwords
         List<String> users = credentials[0];
         for(String currentUser: users) {
