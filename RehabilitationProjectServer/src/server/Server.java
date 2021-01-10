@@ -18,12 +18,12 @@ public class Server {
             @Override
             public void run() {
                 try {
-                    serverSocket = new ServerSocket(9000); //para escuchar, abrimos puerto sólo una vez
+                    serverSocket = new ServerSocket(9000); //The client listens just once
                     while (!shutdown) {
                         Socket socket = serverSocket.accept();
-                        //We use Threads (hilos) to snd the client to serverProcess. The server is free to listen to another client in the same port.
+                        //We use Threads (hilos) to send the client to serverProcess. The server is free to listen to another client in the same port.
                         serverProcess = new ServerProcess(socket);
-                        serverProcess.start();
+                        serverProcess.start(); //java method
                     }
                 } catch (IOException ex) { }
                 finally {
@@ -31,7 +31,7 @@ public class Server {
                 }
             }
         });
-        thread.start(); //start de la clase thread
+        thread.start(); //start from thread class
     }
     
     public void shutdownServer () {

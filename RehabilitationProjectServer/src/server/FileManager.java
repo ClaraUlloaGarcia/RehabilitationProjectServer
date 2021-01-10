@@ -23,16 +23,15 @@ public class FileManager {
     BufferedReader bf;
     PrintWriter pw;
     final String BASE_DIRECTORY;
-    ReentrantLock lock = new ReentrantLock();
+    ReentrantLock lock = new ReentrantLock(); //We use a mutex to block the critical points
     
     private String USER_FILE = "users.txt";
     private String FIXED_FILE = "fixed.txt";
 
     public FileManager() {
-        BASE_DIRECTORY = System.getProperty("user.dir");// //Folder used for all the files   
+        BASE_DIRECTORY = System.getProperty("user.dir"); //Folder used for all the files   
     }
 
-    //GUARDAR 
     public boolean saveUserPassword(String user, String password) {
         
         String saveUser = BASE_DIRECTORY + File.separator + USER_FILE;
@@ -86,7 +85,7 @@ public class FileManager {
             pw.append(height + "\n");
             pw.append("\n");
             pw.close();
-
+            
         } catch (Exception ex) {
             Logger.getLogger(FileManager.class.getName()).log(Level.SEVERE, null, ex);
             lock.unlock();
@@ -114,7 +113,7 @@ public class FileManager {
         try {
             pw = new PrintWriter(new FileWriter(dir, true));
 
-            pw.append(todaysDate() + "\n"); //FECHA, cada vez que introduce los datos variables
+            pw.append(todaysDate() + "\n"); //We add the date every time variable date is updated
           
             pw.append(bitalino.size()+ "\n");
             for(Integer data: bitalino) {
@@ -136,7 +135,6 @@ public class FileManager {
         return true;
     }
 
-    //CARGAR
     public List[] getUserPassword() {
         try {
             lock.lock();

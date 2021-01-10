@@ -5,3 +5,15 @@ male
 72.0
 1.73
 
+clara
+female
+21
+60.0
+1.65
+
+ana
+female
+23
+65.0
+1.75
+

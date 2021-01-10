@@ -40,5 +40,4 @@ public class WorkoutManager {
         }
         return output;
     }
-    
 }

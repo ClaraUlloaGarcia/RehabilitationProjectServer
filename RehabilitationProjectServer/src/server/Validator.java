@@ -33,7 +33,7 @@ public class Validator {
             return false;
         }
         
-        // Para evitar sobreescribir los ficheros de users.txt y fixed.txt
+        //In order to avoid overwrite in users.txt and fixed.txt files
         if("users".equals(user)){
             return false;
         }
@@ -43,11 +43,11 @@ public class Validator {
         
         //2. Is there an existing user with the same name? 
         FileManager fileManager = new FileManager();
-        List[] credentials = fileManager.getUserPassword(); //carga fichero con usuarios ya existentes
+        List[] credentials = fileManager.getUserPassword(); //get the file with already existing users
         if(credentials == null) { 
             return true;
         }
-        if(credentials.length == 0) { //No hay ningún paciente registrado
+        if(credentials.length == 0) { //There is no registered patient yet
             return true;
         }
         
@@ -65,5 +65,4 @@ public class Validator {
     public static boolean validateAge(int age) {
         return age >= 0 && age < 150;
     }
-    
 }

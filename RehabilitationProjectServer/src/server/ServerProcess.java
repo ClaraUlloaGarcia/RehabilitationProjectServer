@@ -24,7 +24,7 @@ public class ServerProcess extends Thread {
     public ServerProcess(Socket socket) {
         this.socket = socket;
     }
-
+    
     public void run() {
         SequenceManager sequenceManager = new SequenceManager();
 
@@ -33,8 +33,8 @@ public class ServerProcess extends Thread {
             outputStream = socket.getOutputStream();
             while (true) {
                 int s;
-                s = inputStream.read(); //Lee un carácter
-                if (sequenceManager.addChar((char) s)) { //Si es true (trama recibida) dejamos de ignorar.
+                s = inputStream.read(); //Reads one character
+                if (sequenceManager.addChar((char) s)) { //If it is true (received sequence) a command is expected
                     s = inputStream.read();
                     if (s == 'L') {
                         processLogin();
@@ -52,7 +52,7 @@ public class ServerProcess extends Thread {
         }
 
         releaseResources();
-        System.out.println("Conexion terminada :)");
+        System.out.println("Connection finished :)");
 
     }
 
@@ -68,7 +68,7 @@ public class ServerProcess extends Thread {
                     continue;
                 }
                 line += new Character((char) s);
-                //Va letra por letra
+                //It goes letter by letter
                 s = inputStream.read();
             }
         } catch (IOException ex) {
@@ -130,7 +130,7 @@ public class ServerProcess extends Thread {
 
     private boolean login(String userName, String password) {
         FileManager fileManager = new FileManager();
-        List[] credentials = fileManager.getUserPassword(); //carga usuarios y contraseñas ya guardados en el fichero
+        List[] credentials = fileManager.getUserPassword(); //get users and passwords already saved from the file
         if (credentials == null) {
             return false;
         }
@@ -223,26 +223,25 @@ public class ServerProcess extends Thread {
     private boolean register(String userName, String password, String gender, int age, double weight, double height) {
         FileManager fileManager = new FileManager();
 
-        
-        
         return fileManager.saveFixedVariables(userName, gender, age,
-                weight, height) && fileManager.saveUserPassword(userName, password); //Guarda el registro en el fichero
+                weight, height) && fileManager.saveUserPassword(userName, password); //Save the registration in the file
     }
 
     // Variable data methods
     private void processData() {
+        // Already logged in?
         if (user == null) {
             sendError();
             return;
         }
-        String sizeString = readLine(); //Cuántos datos vienen del BItalino
+        String sizeString = readLine(); //How many values come from the Bitalino
         int size = Integer.parseInt(sizeString);
         System.out.println("Recibo una linea con " + size + " elementos");
-        List<String> bitalinoData = new ArrayList(); //Lista de strings
+        List<String> bitalinoData = new ArrayList(); //String list as data is sent by text
         for (int i = 0; i < size; i++) {
-            String line = readLine(); //lee linea
+            String line = readLine(); //Read one line
             System.out.println("Data received from client " + line);
-            bitalinoData.add(line);//añade a la lista
+            bitalinoData.add(line);//Addition to the list
         }
         String flex_ang = readLine();
         String turn_ang = readLine();
@@ -269,7 +268,7 @@ public class ServerProcess extends Thread {
         }
 
         FileManager fileManager = new FileManager();
-        boolean saved = fileManager.saveChangingVariables(user, validateFlex, validateTurn, bitalino); //Guarda en el fichero de cada pacinete, sus datos variables
+        boolean saved = fileManager.saveChangingVariables(user, validateFlex, validateTurn, bitalino); //Save in each patient file, its variable data
         if (saved) {
             //Exercises server sends to client
             WorkoutManager workoutManager = new WorkoutManager();
@@ -285,5 +284,4 @@ public class ServerProcess extends Thread {
             sendError();
         }
     }
-
 }
